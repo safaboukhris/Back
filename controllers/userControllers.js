@@ -84,4 +84,18 @@ const updateUser =  async (req,res)  =>{
     }
 }
 
-module.exports= {register,login,getUserData,deleteUser,updateUser}
+
+//@desc user get role: user
+//@methode put path:/blog/getuser
+const getUserUpdatedData = async (req,res) =>{
+    try{
+        const userUpdated =await User.find({_id: req.body.userId});
+        res.status(200).json({msg: "get user updated", userUpdated})
+        console.log(userUpdated);
+    }catch(err){
+        res.status(500).json({msg:"something went wrong", err: err.message})
+    }
+}
+
+
+module.exports= {register,login,getUserData,deleteUser,updateUser,getUserUpdatedData}
